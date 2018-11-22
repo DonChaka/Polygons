@@ -4,6 +4,7 @@
 #include <cmath>
 #include <assert.h>
 
+usnig namespace std;
 
 class poly
 {
@@ -19,29 +20,28 @@ public:
     double & operator [] (unsigned int a)
     {
         if(a >= vec.size())
-            for(int i = vec.size(); i <= a; i++)
-                vec.push_back(0);
+            vec.resize(i + 1, 0);
 
         return vec[a];
     }
 
-    poly operator + (poly &a)
+    poly operator + (const poly &a)
     {
         poly c;
         unsigned int i;
 
         for(i = 0; i < min((a.vec).size(), vec.size() ); i++)
-            c[i] = vec[i] + a[i];
+            c.vec[i] = vec[i] + a.vec[i];
 
         if(vec.size() == i)
         {
             for(; i < a.vec.size(); i++)
-            c[i] = a[i];
+            c.vec[i] = a.vec[i];
         }
         else
         {
             for(; i < vec.size(); i++)
-                c[i] = a[i];
+                c.vec[i] = a.vec[i];
         }
         return c;
     }
